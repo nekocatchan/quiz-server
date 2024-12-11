@@ -3,7 +3,6 @@ const db = await Deno.openKv();
 export async function postQuestion(ctx) {
   // リクエストボディの取得
   const body = await ctx.request.body.json();
-  console.log(body);
 
   // バリデーション
   const validationResult = validateQuestion(body);
@@ -14,7 +13,7 @@ export async function postQuestion(ctx) {
   }
 
   // データの保存
-  console.log(await db.set(["questions", String(body.questionId)], body));
+  await db.set(["questions", String(body.questionId)], body);
 
   ctx.response.status = 200;
   ctx.response.body = { status: 200 };
