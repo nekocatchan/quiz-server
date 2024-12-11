@@ -1,5 +1,5 @@
 import { Router } from "@oak/oak";
-import { postQuestion } from "./question.js";
+import { getQuestion, postQuestion } from "./question.js";
 
 const router = new Router();
 
@@ -13,7 +13,7 @@ router.post("/signin", () => {});
 router.post("/signout", () => {});
 
 router.post("/questions", postQuestion);
-router.get("/questions/:questionId", () => {});
+router.get("/questions/:questionId", getQuestion);
 router.delete("/questions/:questionId", () => {});
 
 export { router };

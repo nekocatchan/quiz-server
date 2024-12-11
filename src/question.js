@@ -3,6 +3,7 @@ const db = await Deno.openKv();
 export async function postQuestion(ctx) {
   // リクエストボディの取得
   const body = await ctx.request.body.json();
+  console.log(body);
 
   // バリデーション
   const validationResult = validateQuestion(body);
@@ -13,7 +14,7 @@ export async function postQuestion(ctx) {
   }
 
   // データの保存
-  await db.set(["questions", body.questionId], body);
+  console.log(await db.set(["questions", String(body.questionId)], body));
 
   ctx.response.status = 200;
   ctx.response.body = { status: 200 };
@@ -59,4 +60,22 @@ function validateQuestion(question) {
 
   // 全ての条件を満たしていれば有効
   return { valid: true };
+}
+
+export async function getQuestion(ctx) {
+  // リクエストボディの取得
+  const questionId = await ctx.params.questionId;
+
+  // バリデーション
+  if (questionId < 1 || questionId > 4) {
+    ctx.response.status = 200;
+    ctx.response.body = { status: 400, error: "選択肢は1~4です" };
+    return;
+  }
+
+  // データの取得
+  const question = await db.get(["questions", questionId]);
+
+  ctx.response.status = 200;
+  ctx.response.body = question.value;
 }
