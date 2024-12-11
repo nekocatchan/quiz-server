@@ -84,6 +84,31 @@ export async function getQuestion(ctx) {
   ctx.response.body = question.value;
 }
 
+export async function deleteQuestion(ctx) {
+  // リクエストボディの取得
+  const questionId = await ctx.params.questionId;
+
+  // バリデーション
+  if (isNotNumber(questionId)) {
+    ctx.response.status = 200;
+    ctx.response.body = { status: 400, error: "質問は数字で取得してください" };
+    return;
+  }
+
+  // データの取得
+  const question = await db.get(["questions", questionId]);
+  if (question.value === null) {
+    ctx.response.status = 200;
+    ctx.response.body = { status: 200 };
+    return;
+  }
+
+  await db.delete(["questions", questionId]);
+
+  ctx.response.status = 200;
+  ctx.response.body = { status: 200 };
+}
+
 function isNotNumber(str) {
   return isNaN(str) || str.trim() === "";
 }
