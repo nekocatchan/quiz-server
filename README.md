@@ -3,5 +3,3 @@
 ```
 $ deno task start
 ```
-
-a
