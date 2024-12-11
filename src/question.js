@@ -66,15 +66,24 @@ export async function getQuestion(ctx) {
   const questionId = await ctx.params.questionId;
 
   // バリデーション
-  if (questionId < 1 || questionId > 4) {
+  if (isNotNumber(questionId)) {
     ctx.response.status = 200;
-    ctx.response.body = { status: 400, error: "選択肢は1~4です" };
+    ctx.response.body = { status: 400, error: "質問は数字で取得してください" };
     return;
   }
 
   // データの取得
   const question = await db.get(["questions", questionId]);
+  if (question.value === null) {
+    ctx.response.status = 200;
+    ctx.response.body = { status: 400, error: "このidのデータはありません" };
+    return;
+  }
 
   ctx.response.status = 200;
   ctx.response.body = question.value;
+}
+
+function isNotNumber(str) {
+  return isNaN(str) || str.trim() === "";
 }
