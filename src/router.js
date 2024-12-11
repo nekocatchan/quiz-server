@@ -1,6 +1,7 @@
 import { Router } from "@oak/oak";
 import * as Errors from "/utils/errors.js";
 import UserController from "/controllers/user_controller.js";
+import QuestionController from "/controllers/question_controller.js";
 
 const router = new Router();
 
@@ -17,7 +18,7 @@ router.post("/signup", UserController.create);
 router.post("/signin", () => {});
 router.post("/signout", () => {});
 
-router.post("/questions", () => {});
+router.post("/questions", QuestionController.postQuestion);
 router.get("/questions/:questionId", () => {});
 router.delete("/questions/:questionId", () => {});
 
