@@ -1,10 +1,15 @@
 import { Router } from "@oak/oak";
+import * as Errors from "/utils/errors.js";
 
 const router = new Router();
 
 // sample
 router.get("/hello", (ctx) => {
   ctx.response.body = { hello: "world" };
+});
+// sample
+router.get("/error/400", (ctx) => {
+  ctx.response.body = Errors.BAD_REQUEST;
 });
 
 router.post("/signup", () => {});
