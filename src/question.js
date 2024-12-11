@@ -95,14 +95,6 @@ export async function deleteQuestion(ctx) {
     return;
   }
 
-  // データの取得
-  const question = await db.get(["questions", questionId]);
-  if (question.value === null) {
-    ctx.response.status = 200;
-    ctx.response.body = { status: 200 };
-    return;
-  }
-
   await db.delete(["questions", questionId]);
 
   ctx.response.status = 200;
