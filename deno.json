@@ -1,0 +1,10 @@
+{
+  "imports": {
+    "/": "./src/",
+    "./": "./",
+    "@oak/oak": "jsr:@oak/oak@^17.1.3"
+  },
+  "tasks": {
+    "start": "deno run -A --watch --unstable-kv src/server.deno.js"
+  }
+}
