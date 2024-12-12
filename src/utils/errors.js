@@ -16,6 +16,10 @@ export const UNKNOWN_INVITE_CODE = error(
   1002,
   "不明な招待コード",
 );
+export const WRONG_USERNAME_OR_PASSWORD = error(
+  1003,
+  "ユーザー名またはパスワードが誤っています",
+);
 
 function error(code, message) {
   return { error: { code, message } };

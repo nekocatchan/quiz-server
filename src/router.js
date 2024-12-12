@@ -1,5 +1,6 @@
 import { Router } from "@oak/oak";
 import * as Errors from "/utils/errors.js";
+import AuthController from "/controllers/auth_controller.js";
 import UserController from "/controllers/user_controller.js";
 import QuestionController from "/controllers/question_controller.js";
 
@@ -15,7 +16,7 @@ router.get("/error/400", (ctx) => {
 });
 
 router.post("/signup", UserController.create);
-router.post("/signin", () => {});
+router.post("/signin", AuthController.signin);
 router.post("/signout", () => {});
 
 router.post("/questions", QuestionController.postQuestion);
