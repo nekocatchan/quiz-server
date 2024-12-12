@@ -1,5 +1,6 @@
 import { Router } from "@oak/oak";
 import * as Errors from "/utils/errors.js";
+import UserController from "/controllers/user_controller.js";
 
 const router = new Router();
 
@@ -12,7 +13,7 @@ router.get("/error/400", (ctx) => {
   ctx.response.body = Errors.BAD_REQUEST;
 });
 
-router.post("/signup", () => {});
+router.post("/signup", UserController.create);
 router.post("/signin", () => {});
 router.post("/signout", () => {});
 
