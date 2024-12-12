@@ -19,7 +19,7 @@ router.post("/signin", () => {});
 router.post("/signout", () => {});
 
 router.post("/questions", QuestionController.postQuestion);
-router.get("/questions/:questionId", () => {});
+router.get("/questions/:questionId", QuestionController.getQuestion);
 router.delete("/questions/:questionId", () => {});
 
 export { router };
