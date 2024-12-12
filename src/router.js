@@ -20,6 +20,6 @@ router.post("/signout", () => {});
 
 router.post("/questions", QuestionController.postQuestion);
 router.get("/questions/:questionId", QuestionController.getQuestion);
-router.delete("/questions/:questionId", () => {});
+router.delete("/questions/:questionId", QuestionController.deleteQuestion);
 
 export { router };
