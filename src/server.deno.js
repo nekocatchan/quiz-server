@@ -4,7 +4,16 @@ import { oakCors } from "cors/mod.ts";
 
 const app = new Application();
 
-app.use(oakCors())
+app.use(async (ctx, next) => {
+  await next();
+
+  ctx.response.headers.set(
+    "Access-Control-Allow-Origin",
+    ctx.request.headers.get("Origin") ?? "",
+  );
+  ctx.response.headers.set("Access-Control-Allow-Credentials", "true");
+});
+app.use(oakCors());
 
 app.use(router.routes());
 app.use(router.allowedMethods());
