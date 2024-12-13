@@ -3,6 +3,7 @@
     "/": "./src/",
     "./": "./",
     "bcrypt/": "https://deno.land/x/bcrypt@v0.4.1/",
+    "cors/": "https://deno.land/x/cors@v1.2.2/",
     "@oak/oak": "jsr:@oak/oak@^17.1.3"
   },
   "tasks": {
