@@ -35,7 +35,7 @@ export default class UserController {
     const newUser = { username, passwordHash };
     await kv.set(KeyFactory.userKey(username), newUser);
 
-    cookies.set("username", username);
+    await cookies.set("username", username);
 
     response.body = { username };
   }
