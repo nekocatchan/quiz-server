@@ -17,7 +17,7 @@ router.get("/error/400", (ctx) => {
 
 router.post("/signup", UserController.create);
 router.post("/signin", AuthController.signin);
-router.post("/signout", () => {});
+router.post("/signout", AuthController.signout);
 
 router.post("/questions", QuestionController.postQuestion);
 router.get("/questions/:questionId", QuestionController.getQuestion);
