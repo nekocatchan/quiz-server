@@ -33,7 +33,7 @@ export default class AuthController {
       return;
     }
 
-    cookies.set("username", username);
+    await cookies.set("username", username);
 
     response.body = { username };
   }
