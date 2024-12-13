@@ -37,4 +37,9 @@ export default class AuthController {
 
     response.body = { username };
   }
+
+  static async signout({ cookies, response }) {
+    await cookies.set("username", "", { maxAge: 0 });
+    response.status = 200;
+  }
 }
