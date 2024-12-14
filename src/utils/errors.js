@@ -22,6 +22,7 @@ export const WRONG_USERNAME_OR_PASSWORD = error(
   1003,
   "ユーザー名またはパスワードが誤っています",
 );
+export const NOT_LOGIN = error(1004, "ログインしてください");
 
 function error(code, message) {
   return { error: { code, message } };
