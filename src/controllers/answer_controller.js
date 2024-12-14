@@ -1,5 +1,6 @@
 import * as Errors from "/utils/errors.js";
 import { kv } from "/db/kv.js";
+import KeyFactory from "/db/key_factory.js";
 
 export default class AnswerController {
   static async answer({ params, cookies, response, request }) {
@@ -22,12 +23,11 @@ export default class AnswerController {
       return;
     }
 
-    const correctAnswer = await kv.get(["questions", questionId]);
+    const correctAnswer =
+      (await kv.get(KeyFactory.questionKey(questionId))).value;
     const correctAnswerId = correctAnswer.value.correctChoiceId;
 
     const isCorrect = answerChoiceId === correctAnswerId;
-
-    const key = ["answers", username, questionId];
 
     const value = {
       username: username,
@@ -36,7 +36,7 @@ export default class AnswerController {
       isCorrect: isCorrect,
     };
 
-    await kv.set(key, value);
+    await kv.set(KeyFactory.answerKey(username, questionId), value);
 
     response.status = 200;
   }

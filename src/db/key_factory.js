@@ -7,4 +7,12 @@ export default class KeyFactory {
   static userKey(username) {
     return ["users", username];
   }
+
+  static questionKey(questionId) {
+    return ["questions", questionId];
+  }
+
+  static answerKey(username, questionId) {
+    return ["answers", username, questionId];
+  }
 }
