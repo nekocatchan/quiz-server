@@ -2,6 +2,7 @@ import * as Errors from "/utils/errors.js";
 import { kv } from "/db/kv.js";
 import KeyFactory from "/db/key_factory.js";
 import HashHelper from "/utils/hash_helper.js";
+import { Roles } from "/config/roles.js";
 
 export default class UserController {
   static async create({ request, cookies, response }) {
@@ -31,8 +32,9 @@ export default class UserController {
     }
 
     // createUser
+    const role = Roles.USER;
     const passwordHash = await HashHelper.hash(password);
-    const newUser = { username, passwordHash };
+    const newUser = { username, passwordHash, role };
     await kv.set(KeyFactory.userKey(username), newUser);
 
     await cookies.set("username", username);

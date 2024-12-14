@@ -1,5 +1,8 @@
 import { Router } from "@oak/oak";
 import * as Errors from "/utils/errors.js";
+import { Permissions } from "/config/roles.js";
+import { auth } from "/middlewares/auth_middlewares.js";
+import SampleController from "/controllers/sample_controller.js";
 import AuthController from "/controllers/auth_controller.js";
 import UserController from "/controllers/user_controller.js";
 import QuestionController from "/controllers/question_controller.js";
@@ -14,6 +17,8 @@ router.get("/hello", (ctx) => {
 router.get("/error/400", (ctx) => {
   ctx.response.body = Errors.BAD_REQUEST;
 });
+// sample
+router.get("/me", auth([Permissions.GET_ME]), SampleController.getMe);
 
 router.post("/signup", UserController.create);
 router.post("/signin", AuthController.signin);

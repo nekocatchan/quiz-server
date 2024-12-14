@@ -6,6 +6,8 @@
  */
 
 export const BAD_REQUEST = error(400, "Bad Request");
+export const UNAUTHORIZED = error(401, "Unauthorized");
+export const FORBIDDEN = error(403, "Forbidden");
 export const INTERNAL_SERVER_ERROR = error(500, "Internal Server Error");
 
 export const INVALID_USERNAME = error(
