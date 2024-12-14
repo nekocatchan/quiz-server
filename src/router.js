@@ -29,6 +29,6 @@ router.post("/questions", QuestionController.postQuestion);
 router.get("/questions/:questionId", QuestionController.getQuestion);
 router.delete("/questions/:questionId", QuestionController.deleteQuestion);
 
-router.post("/answers/:questionId", AnswerController.answer);
+router.post("/questions/:questionId/answer", AnswerController.answer);
 
 export { router };

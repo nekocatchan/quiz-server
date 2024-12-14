@@ -24,7 +24,7 @@ export default class AnswerController {
     }
 
     const correctAnswer =
-      (await kv.get(KeyFactory.questionKey(questionId))).value;
+      (await kv.get(KeyFactory.questionKey(questionId)));
     const correctAnswerId = correctAnswer.value.correctChoiceId;
 
     const isCorrect = answerChoiceId === correctAnswerId;
